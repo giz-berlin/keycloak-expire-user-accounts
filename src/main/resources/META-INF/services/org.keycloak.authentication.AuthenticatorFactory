@@ -1,0 +1,2 @@
+berlin.giz.keycloak.expireuseraccounts.ExpireUserAccountsAuthenticatorFactory
+berlin.giz.keycloak.expireuseraccounts.ExpireUserAccountsDirectGrantAuthenticatorFactory
