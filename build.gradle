@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+configurations {
+    bundleLib
+}
+
+group 'berlin.giz.keycloak'
+version '1.0.0'
+
+ext {
+    keycloakVersion = '17.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.keycloak', name: 'keycloak-services', version: keycloakVersion
+    implementation group: 'org.keycloak', name: 'keycloak-server-spi', version: keycloakVersion
+    implementation group: 'org.keycloak', name: 'keycloak-server-spi-private', version: keycloakVersion
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    from {
+        configurations.bundleLib.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
