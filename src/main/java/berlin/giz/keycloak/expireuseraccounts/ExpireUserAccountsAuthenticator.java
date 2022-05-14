@@ -27,7 +27,7 @@ public class ExpireUserAccountsAuthenticator implements Authenticator {
         UserModel user = context.getUser();
         
         String accountExpirationDateString = user.getFirstAttribute(EXPIRATION_ATTRIBUTE_NAME);
-        if (accountExpirationDateString == null || accountExpirationDateString == "") {
+        if (accountExpirationDateString == null || accountExpirationDateString.equals("")) {
             LOGGER.debugf("User %s had no account expiration date set or it was empty", user.getUsername());
             context.success();
             return;
