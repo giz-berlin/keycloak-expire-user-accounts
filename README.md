@@ -3,7 +3,7 @@
 [![pipeline status](https://rechenknecht.net/giz/keycloak/expire-user-accounts/badges/main/pipeline.svg)](https://rechenknecht.net/giz/keycloak/expire-user-accounts/-/commits/main)
 
 This provider allows you to set an individual expiration date for user accounts.
-Once that date has passed, users are no longer able to log in.
+Once that date has passed, users are no longer able to log in and disabled in Keycloak.
 
 ## Installation
 

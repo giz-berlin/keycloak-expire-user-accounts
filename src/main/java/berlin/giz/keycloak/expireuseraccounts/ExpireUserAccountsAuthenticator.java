@@ -47,7 +47,11 @@ public class ExpireUserAccountsAuthenticator implements Authenticator {
             deniedMessage = authenticatorConfig.getConfig().get(ExpireUserAccountsAuthenticatorFactory.DENIED_MESSAGE_NAME);
         }
 
-        LOGGER.infof("The user %s tried to log in, but their account expired on %s", user.getUsername(), accountExpirationDate);
+        LOGGER.infof("The user %s tried to log in, but their account expired on %s. Disabling account ...", user.getUsername(), accountExpirationDate);
+
+        // Disable the account, so they cannot use their account anywhere in Keycloak anymore.
+        user.setEnabled(false);
+
         respondWithError(context, deniedMessage);
     }
 
