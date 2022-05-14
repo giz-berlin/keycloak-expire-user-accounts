@@ -9,6 +9,10 @@ public class ExpireUserAccountsDirectGrantAuthenticatorFactory extends ExpireUse
     private static final String PROVIDER_ID = "expire-user-accounts-direct-grant";
     private static final ExpireUserAccountsDirectGrantAuthenticator EXPIRE_USER_ACCOUNTS_AUTHENTICATOR = new ExpireUserAccountsDirectGrantAuthenticator();
 
+    public static final AuthenticationExecutionModel.Requirement[] REQUIREMENT_CHOICES = {
+            AuthenticationExecutionModel.Requirement.REQUIRED
+    };
+
     @Override
     public String getDisplayType() {
         return "Expire User Accounts Authenticator for Direct Grant";
@@ -16,7 +20,7 @@ public class ExpireUserAccountsDirectGrantAuthenticatorFactory extends ExpireUse
 
     @Override
     public AuthenticationExecutionModel.Requirement[] getRequirementChoices() {
-        return new AuthenticationExecutionModel.Requirement[0];
+        return REQUIREMENT_CHOICES;
     }
 
     @Override
