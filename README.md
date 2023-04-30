@@ -39,3 +39,40 @@ To do so, visit your flow's page, click the `Actions` button on this authenticat
 Then, configure the provider to your liking.
 
 ![Configuration of this authenticator](docs/configuration.png)
+
+### Declarative User Profile
+
+As of Keycloak 21 the [declarative user profile](https://www.keycloak.org/docs/latest/server_admin/#user-profile) is supported in the admin console, such that the user creation/editing etc. forms can be generated based on that.
+
+If you enable the `declarative-user-profile` feature, you can add the `accountExpirationDate` property using the following JSON in the JSON editor:
+
+```json
+{
+      "name": "accountExpirationDate",
+      "displayName": "Account Expiration Date",
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "edit": [
+          "admin"
+        ],
+        "view": [
+          "admin"
+        ]
+      },
+      "annotations": {},
+      "validations": {
+        "pattern": {
+          "pattern": "^\\d{4}-\\d{1,2}-\\d{1,2}$",
+          "error-message": ""
+        }
+      },
+      "group": null
+    }
+```
+
+You can also get a similar configuration using the normal UI.
+
+This configuration ensures that only admins can `edit` and `view` the attribute.
+If you want that users can view their own expiration date, enable the `view` permission for users as well.
