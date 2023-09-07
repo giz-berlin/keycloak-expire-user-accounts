@@ -9,7 +9,7 @@ import org.keycloak.models.*;
 import org.keycloak.services.messages.Messages;
 
 import java.time.LocalDate;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 /**
  * {@link Authenticator} that requires a users account to not be expired.
