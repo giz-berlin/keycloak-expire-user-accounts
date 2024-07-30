@@ -7,10 +7,10 @@ configurations {
 }
 
 group 'berlin.giz.keycloak'
-version '1.0.8'
+version '1.0.9'
 
 ext {
-    keycloakVersion = '24.0.1'
+    keycloakVersion = '25.0.2'
 }
 
 repositories {
