@@ -40,39 +40,37 @@ Then, configure the provider to your liking.
 
 ![Configuration of this authenticator](docs/configuration.png)
 
-### Declarative User Profile
+### User Profile
 
-As of Keycloak 21 the [declarative user profile](https://www.keycloak.org/docs/latest/server_admin/#user-profile) is supported in the admin console, such that the user creation/editing etc. forms can be generated based on that.
-
-If you enable the `declarative-user-profile` feature, you can add the `accountExpirationDate` property using the following JSON in the JSON editor:
+In your realm's "User profile" settings, add the `accountExpirationDate` attribute using the following JSON in the JSON editor (or alternatively configure it via the UI):
 
 ```json
 {
-      "name": "accountExpirationDate",
-      "displayName": "Account Expiration Date",
-      "selector": {
-        "scopes": []
-      },
-      "permissions": {
-        "edit": [
-          "admin"
-        ],
-        "view": [
-          "admin"
-        ]
-      },
-      "annotations": {},
-      "validations": {
-        "pattern": {
-          "pattern": "^\\d{4}-\\d{1,2}-\\d{1,2}$",
-          "error-message": ""
-        }
-      },
-      "group": null
-    }
+  "name": "accountExpirationDate",
+  "displayName": "${profile.attributes.accountExpirationDate}",
+  "validations": {
+    "iso-date": {}
+  },
+  "annotations": {
+    "inputType": "html5-date"
+  },
+  "permissions": {
+    "view": [
+      "admin"
+    ],
+    "edit": [
+      "admin"
+    ]
+  },
+  "selector": {
+    "scopes": []
+  },
+  "multivalued": false
+}
 ```
 
-You can also get a similar configuration using the normal UI.
+The following fields are configured:
 
-This configuration ensures that only admins can `edit` and `view` the attribute.
-If you want that users can view their own expiration date, enable the `view` permission for users as well.
+- `validations`: The `iso-date` validation ensures that the attribute value can be parsed by this plugin.
+- `annotations`: The `inputType` of `html5-date` tells the admin console (and other UIs) to display the attribute as an HTML date input field (which enables the browser to show a date-picker).
+- `permissions`: Only admins can `edit` and `view` the attribute. If you want that users can view their own expiration date, enable the `view` permission for users as well.
